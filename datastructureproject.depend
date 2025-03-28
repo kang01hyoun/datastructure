@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1743095757 source:c:\users\kanghyeon\desktop\datastructureproject\main.c
+	<stdio.h>
+	<stdlib.h>
+
