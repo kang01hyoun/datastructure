@@ -1,5 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 100
+
+typedef struct {
+    int s_id;
+    char name[20];
+} student;
+
+student enroll[MAX];
+int length = 0;
+
+int strcmp(const char *str1, const char *str2);
+int same_Check(student s);
+void save();
+void load();
+int apply(student s);
+int drop(int id);
+void print();
+void doRequest(char ch);
+
+int main() {
+    char ch;
+    load();
+    do {
+        printf("\n---------------------------------------\n");
+        printf("자료구조 수강신청 및 수강철회\n");
+        printf("-----------------------------------------\n");
+        printf("1. 수강신청\n");
+        printf("2. 수강철회\n");
+        printf("3. 수강조회\n");
+        printf("q. 프로그램 종료\n");
+        printf("-----------------------------------------\n");
+        printf("원하시는 서비스를 선택하세요: ");
+        scanf(" %c", &ch);
+        doRequest(ch);
+    } while (ch != 'q');
+    return 0;
+}
 
 int strcmp(const char *str1, const char *str2) {
     while (*str1 && *str2) {
@@ -12,15 +49,7 @@ int strcmp(const char *str1, const char *str2) {
     return *str1 - *str2;
 }
 
-typedef struct {
-    int s_id;
-    char name[20];
-} student;
-
-student enroll[100];
-int length = 0;
-
-int is_same(student s) {
+int same_Check(student s) {
     for (int i = 0; i < length; i++) {
         if (enroll[i].s_id == s.s_id && strcmp(enroll[i].name, s.name) == 0) {
             return 1;
@@ -55,7 +84,7 @@ int apply(student s) {
     if (length >= 100) {
         return 0;
     }
-    if (is_same(s)) {
+    if (same_Check(s)) {
         return -1;
     }
     enroll[length] = s;
@@ -101,6 +130,7 @@ void doRequest(char ch) {
                 printf("\n이미 등록된 학생 정보입니다.\n");
             else
                 printf("\n수강신청 승인됨.\n");
+                save();
             break;
 
         case '2':
@@ -115,6 +145,7 @@ void doRequest(char ch) {
                 printf("\n수강신청 정보 없음\n");
             else
                 printf("\n신청철회 승인됨\n");
+                save();
             break;
 
         case '3':
@@ -132,23 +163,4 @@ void doRequest(char ch) {
             system("cls");
             printf("잘못된 입력입니다. 다시 선택해주세요.\n");
     }
-}
-
-int main() {
-    char ch;
-    load();
-    do {
-        printf("\n---------------------------------------\n");
-        printf("자료구조 수강신청 및 수강철회\n");
-        printf("---------------------------------------\n");
-        printf("1. 수강신청\n");
-        printf("2. 수강철회\n");
-        printf("3. 수강조회\n");
-        printf("q. 종료\n");
-        printf("---------------------------------------\n");
-        printf("원하시는 서비스를 선택하세요: ");
-        scanf(" %c", &ch);
-        doRequest(ch);
-    } while (ch != 'q');
-    return 0;
 }
