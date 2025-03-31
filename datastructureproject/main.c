@@ -58,6 +58,18 @@ int same_Check(student s) {
     return 0;
 }
 
+void sort(){
+    for(int i = length - 1; i > 0; i--){
+        for(int j = 0; j < i; j++){
+            if(enroll[j].s_id > enroll[j+1].s_id){
+            int temp = enroll[j].s_id;
+            enroll[j].s_id = enroll[j+1].s_id;
+            enroll[j+1].s_id = temp;
+            }
+        }
+    }
+}
+
 void save() {
     FILE *f1 = fopen("enroll.txt", "w");
     if (f1 == NULL) {
@@ -124,13 +136,17 @@ void doRequest(char ch) {
             printf("이름: ");
             scanf("%s", s.name);
             flag = apply(s);
-            if (flag == 0)
+            if (flag == 0) {
                 printf("\n수강신청 마감됨.\n");
-            else if (flag == -1)
+            }
+            else if (flag == -1) {
                 printf("\n이미 등록된 학생 정보입니다.\n");
-            else
+            }
+            else {
                 printf("\n수강신청 승인됨.\n");
+                sort();
                 save();
+            }
             break;
 
         case '2':
@@ -141,11 +157,14 @@ void doRequest(char ch) {
             printf("이름: ");
             scanf("%s", s.name);
             flag = drop(s.s_id);
-            if (flag == 0)
+            if (flag == 0) {
                 printf("\n수강신청 정보 없음\n");
-            else
+            }
+            else {
                 printf("\n신청철회 승인됨\n");
+                sort();
                 save();
+            }
             break;
 
         case '3':
