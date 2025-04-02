@@ -58,18 +58,6 @@ int same_Check(student s) {
     return 0;
 }
 
-void sort(){
-    for(int i = length - 1; i > 0; i--){
-        for(int j = 0; j < i; j++){
-            if(enroll[j].s_id > enroll[j+1].s_id){
-            int temp = enroll[j].s_id;
-            enroll[j].s_id = enroll[j+1].s_id;
-            enroll[j+1].s_id = temp;
-            }
-        }
-    }
-}
-
 void save() {
     FILE *f1 = fopen("enroll.txt", "w");
     if (f1 == NULL) {
@@ -93,14 +81,21 @@ void load() {
 }
 
 int apply(student s) {
-    if (length >= 100) {
+    if (length >= MAX) {
         return 0;
     }
     if (same_Check(s)) {
         return -1;
     }
-    enroll[length] = s;
+    int index = 0;
+    while (index < length && s.s_id > enroll[index].s_id) {
+        index++;
+    }
     length++;
+    for (int i = length-1; i > index; i--) {
+        enroll[i] = enroll[i-1];
+    }
+    enroll[index] = s;
     return 1;
 }
 
@@ -144,7 +139,6 @@ void doRequest(char ch) {
             }
             else {
                 printf("\n¼ö°­½ÅÃ» ½ÂÀÎµÊ.\n");
-                sort();
                 save();
             }
             break;
@@ -162,7 +156,6 @@ void doRequest(char ch) {
             }
             else {
                 printf("\n½ÅÃ»Ã¶È¸ ½ÂÀÎµÊ\n");
-                sort();
                 save();
             }
             break;
