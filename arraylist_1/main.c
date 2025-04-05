@@ -7,7 +7,7 @@ int length = 0;
 
 void addlist(int input){
     int index = 0;
-    while (index < length && input <= arr[index]){
+    while (index < length && input >= arr[index]){
         index++;
     }
     for (int i = length; i > index; i--) {
