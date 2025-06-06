@@ -1,0 +1,50 @@
+인접리스트 출력
+vertex 0 -> 8 -> 3 -> 2 -> 1 -> NULL
+vertex 1 -> 9 -> 2 -> 4 -> 3 -> 0 -> NULL
+vertex 2 -> 3 -> 1 -> 6 -> 5 -> 0 -> NULL
+vertex 3 -> 2 -> 0 -> 7 -> 1 -> NULL
+vertex 4 -> 5 -> 7 -> 1 -> NULL
+vertex 5 -> 6 -> 4 -> 8 -> 2 -> NULL
+vertex 6 -> 7 -> 5 -> 8 -> 2 -> NULL
+vertex 7 -> 6 -> 9 -> 4 -> 3 -> NULL
+vertex 8 -> 0 -> 9 -> 6 -> 5 -> NULL
+vertex 9 -> 1 -> 8 -> 7 -> NULL
+DFS 탐색 시작점 3 
+visited vertex: 3
+from 3 to 2 visited
+from 2 to 1 visited
+from 1 to 9 visited
+from 9 to 8 visited
+from 8 to 0 visited
+from 8 to 6 visited
+from 6 to 7 visited
+from 7 to 4 visited
+from 4 to 5 visited
+
+
+DFS 탐색 시작점 5 
+visited vertex: 5
+from 5 to 6 visited
+from 6 to 7 visited
+from 7 to 9 visited
+from 9 to 1 visited
+from 1 to 2 visited
+from 2 to 3 visited
+from 3 to 0 visited
+from 0 to 8 visited
+from 1 to 4 visited
+
+
+DFS 탐색 시작점 7 
+visited vertex: 7
+from 7 to 6 visited
+from 6 to 5 visited
+from 5 to 4 visited
+from 4 to 1 visited
+from 1 to 9 visited
+from 9 to 8 visited
+from 8 to 0 visited
+from 0 to 3 visited
+from 3 to 2 visited
+
+
