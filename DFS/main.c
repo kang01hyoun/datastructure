@@ -32,7 +32,7 @@ void addEdge(int from, int to){
 void DFS(int start, FILE *fout){
     int top = -1;
     visited[start] = 1;
-    fprintf(fout, "visited vertex: %d\n", start);
+    fprintf(fout, "starting point vertex : %d\n", start);
     stackarr[++top] = start;
 
     while (top >= 0) {
@@ -44,7 +44,7 @@ void DFS(int start, FILE *fout){
 
         if (current[curr] != NULL) {
             int neighbor = current[curr]->vertex;
-            fprintf(fout, "from %d to %d visited\n", curr, neighbor);
+            fprintf(fout, "from %d to %d visited %d\n", curr, neighbor, neighbor);
             visited[neighbor] = 1;
             stackarr[++top] = neighbor;
             current[curr] = current[curr]->nextNode;
@@ -53,7 +53,6 @@ void DFS(int start, FILE *fout){
             top--;
         }
     }
-    fprintf(fout, "\n\n");
 }
 
 int main(){
@@ -104,7 +103,7 @@ int main(){
             visited[i] = 0;
             current[i] = head[i];
         }
-        fprintf(fout, "DFS 탐색 시작점 %d \n", startv);
+        fprintf(fout, "\n\nDFS search starting point %d \n", startv);
         DFS(startv, fout);
     }
 
@@ -116,6 +115,7 @@ int main(){
             free(temp);
         }
     }
+    printf("output.txt에 출력되었습니다. 파일 확인 바랍니다.");
     fclose(fout);
     fclose(fin);
     return 0;
